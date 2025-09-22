@@ -1,4 +1,6 @@
 package com.eSports.BattleZone.services.admin.impl;
 
-public class AdminServiceImpl {
+import com.eSports.BattleZone.services.admin.AdminService;
+
+public class AdminServiceImpl implements AdminService {
 }

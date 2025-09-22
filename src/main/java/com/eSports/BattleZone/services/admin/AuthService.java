@@ -1,4 +1,8 @@
-package com.eSports.BattleZone.services.admin.impl;
+package com.eSports.BattleZone.services.admin;
 
-public class AuthService {
+import com.eSports.BattleZone.dto.AdminDTO;
+import com.eSports.BattleZone.dto.SignUpDTO;
+
+public interface AuthService {
+    AdminDTO signUp(SignUpDTO signUpDTO);
 }

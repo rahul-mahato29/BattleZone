@@ -1,4 +1,36 @@
 package com.eSports.BattleZone.services.admin.impl;
 
-public class AuthServiceImpl {
+import com.eSports.BattleZone.dto.AdminDTO;
+import com.eSports.BattleZone.dto.SignUpDTO;
+import com.eSports.BattleZone.entities.Admin;
+import com.eSports.BattleZone.repositories.AdminRepository;
+import com.eSports.BattleZone.services.admin.AuthService;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+public class AuthServiceImpl implements AuthService {
+
+    private final AdminRepository adminRepository;
+    private final ModelMapper modelMapper;
+//    private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public AdminDTO signUp(SignUpDTO signUpDTO) {
+        Optional<Admin> admin = adminRepository.findByEmail(signUpDTO.getEmail());
+        if(admin.isPresent()) {
+            System.out.println("Not present");
+        }
+
+        Admin toBeCreatedAdmin = modelMapper.map(signUpDTO, Admin.class);
+//        toBeCreatedAdmin.setPassword(passwordEncoder.encode(toBeCreatedAdmin.getPassword()));
+        Admin savedAdmin = adminRepository.save(toBeCreatedAdmin);
+
+        return modelMapper.map(savedAdmin, AdminDTO.class);
+    }
 }
