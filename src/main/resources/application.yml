@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: BattleZone
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_username}
+    password: ${DB_password}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        formate_sql: true
+
+#jwt:
+#  secretKey: ${JWT_SecretKey}
+
+server:
+  port: 8081
