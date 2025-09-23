@@ -1,6 +1,7 @@
 package com.eSports.BattleZone.controllers.admin;
 
 import com.eSports.BattleZone.dto.AdminDTO;
+import com.eSports.BattleZone.dto.LoginDTO;
 import com.eSports.BattleZone.dto.SignUpDTO;
 import com.eSports.BattleZone.services.admin.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/admin/auth")
+@RequestMapping(path = "/admins/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -23,5 +24,10 @@ public class AuthController {
         return ResponseEntity.ok(admin);
     }
 
+    @PostMapping(path = "/login")
+    public ResponseEntity<AdminDTO> logIn(@RequestBody LoginDTO loginDTO) {
+        AdminDTO admin = authService.logIn(loginDTO);
+        return ResponseEntity.ok(admin);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.eSports.BattleZone.services.admin.impl;
 
 import com.eSports.BattleZone.dto.AdminDTO;
+import com.eSports.BattleZone.dto.LoginDTO;
 import com.eSports.BattleZone.dto.SignUpDTO;
 import com.eSports.BattleZone.entities.Admin;
 import com.eSports.BattleZone.repositories.AdminRepository;
@@ -32,5 +33,11 @@ public class AuthServiceImpl implements AuthService {
         Admin savedAdmin = adminRepository.save(toBeCreatedAdmin);
 
         return modelMapper.map(savedAdmin, AdminDTO.class);
+    }
+
+    @Override
+    public AdminDTO logIn(LoginDTO loginDTO) {
+        //todo
+        return null;
     }
 }

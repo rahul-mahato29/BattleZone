@@ -19,7 +19,7 @@ public class WebSecurityConfig {
 
             httpSecurity
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/admin/**").permitAll()
+                            .requestMatchers("/admins/**").permitAll()
                             .anyRequest().authenticated())
                     .csrf(AbstractHttpConfigurer::disable)
                     .sessionManagement(sessionConfig -> sessionConfig
