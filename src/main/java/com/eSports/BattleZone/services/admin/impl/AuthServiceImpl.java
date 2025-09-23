@@ -7,7 +7,7 @@ import com.eSports.BattleZone.repositories.AdminRepository;
 import com.eSports.BattleZone.services.admin.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final AdminRepository adminRepository;
     private final ModelMapper modelMapper;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public AdminDTO signUp(SignUpDTO signUpDTO) {
@@ -28,7 +28,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         Admin toBeCreatedAdmin = modelMapper.map(signUpDTO, Admin.class);
-//        toBeCreatedAdmin.setPassword(passwordEncoder.encode(toBeCreatedAdmin.getPassword()));
+        toBeCreatedAdmin.setPassword(passwordEncoder.encode(toBeCreatedAdmin.getPassword()));
         Admin savedAdmin = adminRepository.save(toBeCreatedAdmin);
 
         return modelMapper.map(savedAdmin, AdminDTO.class);
