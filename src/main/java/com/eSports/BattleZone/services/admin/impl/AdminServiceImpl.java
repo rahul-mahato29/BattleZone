@@ -2,6 +2,7 @@ package com.eSports.BattleZone.services.admin.impl;
 
 import com.eSports.BattleZone.dto.AdminDTO;
 import com.eSports.BattleZone.entities.Admin;
+import com.eSports.BattleZone.entities.enums.Role;
 import com.eSports.BattleZone.exceptions.ResourceNotFoundException;
 import com.eSports.BattleZone.repositories.AdminRepository;
 import com.eSports.BattleZone.services.admin.AdminService;
@@ -43,8 +44,29 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public AdminDTO updateAdminPasswordById(Long id, String updatedPassword) {
         log.info("Updating the admin with Id : {}", id);
-        Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin not found with id: "+ id));
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin not found with id : "+ id));
         admin.setPassword(passwordEncoder.encode(updatedPassword));
         return modelMapper.map(admin, AdminDTO.class);
+    }
+
+    @Override
+    public AdminDTO updateAdminRoleById(Long id, Role updatedRole) {
+        log.info("Updating the admin role with Id : {}", id);
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin not found with id : " +id));
+        admin.setRole(updatedRole);
+        return modelMapper.map(admin, AdminDTO.class);
+    }
+
+    @Override
+    public String deleteAdminById(Long id) {
+        log.info("Deleting the admin with Id : {}", id);
+        Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin not found with id : "+ id));
+        if(admin != null) {
+            adminRepository.deleteById(id);
+            return "Admin Removed Successfully!!";
+        }
+        else {
+            return "Admin Not Found!!";
+        }
     }
 }

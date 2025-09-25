@@ -1,6 +1,7 @@
 package com.eSports.BattleZone.services.admin;
 
 import com.eSports.BattleZone.dto.AdminDTO;
+import com.eSports.BattleZone.entities.enums.Role;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,4 +13,8 @@ public interface AdminService {
     AdminDTO getAdminById(Long id);
 
     AdminDTO updateAdminPasswordById(Long id, String updatedPassword);
+
+    AdminDTO updateAdminRoleById(Long id, Role updatedRole);
+
+    String deleteAdminById(Long id);
 }
