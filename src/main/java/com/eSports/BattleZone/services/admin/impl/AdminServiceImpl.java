@@ -43,9 +43,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminDTO updateAdminPasswordById(Long id, String updatedPassword) {
-        log.info("Updating the admin with Id : {}", id);
+        log.info("Updating the admins password with Id : {}", id);
         Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin not found with id : "+ id));
         admin.setPassword(passwordEncoder.encode(updatedPassword));
+        admin = adminRepository.save(admin);
         return modelMapper.map(admin, AdminDTO.class);
     }
 
@@ -54,6 +55,7 @@ public class AdminServiceImpl implements AdminService {
         log.info("Updating the admin role with Id : {}", id);
         Admin admin = adminRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Admin not found with id : " +id));
         admin.setRole(updatedRole);
+        admin = adminRepository.save(admin);
         return modelMapper.map(admin, AdminDTO.class);
     }
 

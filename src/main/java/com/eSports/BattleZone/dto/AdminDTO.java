@@ -1,6 +1,8 @@
 package com.eSports.BattleZone.dto;
 
 import com.eSports.BattleZone.entities.enums.Role;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data
