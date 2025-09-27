@@ -13,6 +13,8 @@ public interface EventService {
 
     EventDTO getEventById(Long id);
 
+    List<EventDTO> getAllActiveEvents();
+
     EventDTO updateEventEntryAmountById(Long id, double updatedEntryAmt);
 
     EventDTO updateEventWinAmountById(Long id, double updatedWinAmt);

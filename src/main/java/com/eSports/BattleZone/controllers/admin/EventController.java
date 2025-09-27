@@ -35,6 +35,12 @@ public class EventController {
         return ResponseEntity.ok(event);
     }
 
+    @GetMapping(path = "/active")
+    public ResponseEntity<List<EventDTO>> getAllActiveEvent() {
+        List<EventDTO> activeEvents = eventService.getAllActiveEvents();
+        return ResponseEntity.ok(activeEvents);
+    }
+
     @PatchMapping(path = "/{eventId}/update/entryAmt")
     public ResponseEntity<EventDTO> updateEventEntryAmountById(@PathVariable(name = "eventId") Long id, @RequestBody double updatedEntryAmt) {
         EventDTO event = eventService.updateEventEntryAmountById(id, updatedEntryAmt);

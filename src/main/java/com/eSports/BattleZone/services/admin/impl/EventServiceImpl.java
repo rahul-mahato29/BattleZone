@@ -54,6 +54,16 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<EventDTO> getAllActiveEvents() {
+        log.info("Getting all active events");
+
+        List<Event> eventList = eventRepository.findAll();
+        List<Event> activeEventList = eventList.stream().filter(event -> event.isActive() == true).collect(Collectors.toList());
+
+        return activeEventList.stream().map(activeEvent -> modelMapper.map(activeEvent, EventDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public EventDTO updateEventEntryAmountById(Long id, double updatedEntryAmt) {
         log.info("Updating event entry price with event id : {}", id);
 
