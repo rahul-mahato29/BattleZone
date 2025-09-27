@@ -13,4 +13,6 @@ public interface EventService {
     EventDTO updateEventWinAmountById(Long id, double updatedWinAmt);
 
     EventDTO updateEventTimeById(Long id, UpdateTimeRequestDTO updatedTime);
+
+    String deleteEventById(Long id);
 }

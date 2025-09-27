@@ -28,7 +28,7 @@ public class EventServiceImpl implements EventService {
         //todo - check same event already present
 
         Event toBeCreatedEvent = modelMapper.map(eventDTO, Event.class);
-//        toBeCreatedEvent.setActive(true);
+        toBeCreatedEvent.setActive(true);
         Event event = eventRepository.save(toBeCreatedEvent);
 
         return modelMapper.map(event, EventDTO.class);
@@ -60,12 +60,27 @@ public class EventServiceImpl implements EventService {
     public EventDTO updateEventTimeById(Long id, UpdateTimeRequestDTO updatedTime) {
         log.info("Updating event time with event id : {}", id);
 
+        //todo - Check how to update time of an event
         Event event = eventRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event not found with id : "+ id));
         LocalDateTime updatedMatchTime = modelMapper.map(updatedTime, LocalDateTime.class);
         event.setMatchTime(updatedMatchTime);
         event = eventRepository.save(event);
 
         return modelMapper.map(event, EventDTO.class);
+    }
+
+    @Override
+    public String deleteEventById(Long id) {
+        log.info("Deleting the event with id : {}", id);
+
+        Event event = eventRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event not foudn with id : "+ id));
+        if(event != null) {
+            eventRepository.deleteById(id);
+            return "Event Successfully Deleted!!";
+        }
+        else {
+            return "Event Not Found!!";
+        }
     }
 
 

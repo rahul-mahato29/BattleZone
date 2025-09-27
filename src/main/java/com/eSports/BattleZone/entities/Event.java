@@ -32,6 +32,5 @@ public class Event {
     @Column(nullable = false)
     private LocalDateTime matchTime;
 
-//    @Column(nullable = false)
-//    private boolean isActive;
+    private boolean isActive;
 }

@@ -39,4 +39,10 @@ public class EventController {
         EventDTO event = eventService.updateEventTimeById(id, updatedTime);
         return ResponseEntity.ok(event);
     }
+
+    @DeleteMapping(path = "/{eventId}")
+    public ResponseEntity<String> deleteEventById(@PathVariable(name = "eventId") Long id) {
+        String message = eventService.deleteEventById(id);
+        return ResponseEntity.ok(message);
+    }
 }
