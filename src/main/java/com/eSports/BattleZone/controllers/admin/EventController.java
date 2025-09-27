@@ -18,4 +18,10 @@ public class EventController {
         EventDTO event = eventService.createEvent(eventDTO);
         return ResponseEntity.ok(event);
     }
+
+    @PatchMapping(path = "/update/{eventId}")
+    public ResponseEntity<EventDTO> updateEventEntryAmountById(@PathVariable(name = "eventId") Long id, @RequestBody double updatedEntryAmt) {
+        EventDTO event = eventService.updateEventEntryAmountById(id, updatedEntryAmt);
+        return ResponseEntity.ok(event);
+    }
 }
