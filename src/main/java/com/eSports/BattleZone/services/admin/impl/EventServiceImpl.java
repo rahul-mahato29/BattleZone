@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -31,6 +33,23 @@ public class EventServiceImpl implements EventService {
         toBeCreatedEvent.setActive(true);
         Event event = eventRepository.save(toBeCreatedEvent);
 
+        return modelMapper.map(event, EventDTO.class);
+    }
+
+    @Override
+    public List<EventDTO> getAllEvents() {
+        log.info("Getting All Events");
+        List<Event> eventList = eventRepository.findAll();
+        return eventList
+                .stream()
+                .map(event -> modelMapper.map(event, EventDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public EventDTO getEventById(Long id) {
+        log.info("Getting the event with id : {}", id);
+        Event event = eventRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event not found id : "+ id));
         return modelMapper.map(event, EventDTO.class);
     }
 

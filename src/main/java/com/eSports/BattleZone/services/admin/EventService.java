@@ -4,9 +4,14 @@ import com.eSports.BattleZone.dto.EventDTO;
 import com.eSports.BattleZone.dto.UpdateTimeRequestDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface EventService {
     EventDTO createEvent(EventDTO eventDTO);
+
+    List<EventDTO> getAllEvents();
+
+    EventDTO getEventById(Long id);
 
     EventDTO updateEventEntryAmountById(Long id, double updatedEntryAmt);
 

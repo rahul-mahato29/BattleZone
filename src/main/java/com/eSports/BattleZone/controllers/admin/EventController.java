@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/admins/events")
@@ -19,6 +20,18 @@ public class EventController {
     @PostMapping
     public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO eventDTO) {
         EventDTO event = eventService.createEvent(eventDTO);
+        return ResponseEntity.ok(event);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EventDTO>> getAllEvents() {
+        List<EventDTO> eventList = eventService.getAllEvents();
+        return ResponseEntity.ok(eventList);
+    }
+
+    @GetMapping(path = "/{eventId}")
+    public ResponseEntity<EventDTO> getEventById(@PathVariable(name = "eventId") Long id) {
+        EventDTO event = eventService.getEventById(id);
         return ResponseEntity.ok(event);
     }
 
