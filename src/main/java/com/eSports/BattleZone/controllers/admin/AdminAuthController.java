@@ -2,8 +2,8 @@ package com.eSports.BattleZone.controllers.admin;
 
 import com.eSports.BattleZone.dto.AdminDTO;
 import com.eSports.BattleZone.dto.LoginDTO;
-import com.eSports.BattleZone.dto.SignUpDTO;
-import com.eSports.BattleZone.services.admin.AuthService;
+import com.eSports.BattleZone.dto.AdminSignUpDTO;
+import com.eSports.BattleZone.services.admin.AdminAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/admins/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AdminAuthController {
 
-    private final AuthService authService;
+    private final AdminAuthService authService;
 
     @PostMapping(path = "/signup")
-    public ResponseEntity<AdminDTO> singUp(@RequestBody SignUpDTO signUpDTO) {
+    public ResponseEntity<AdminDTO> singUp(@RequestBody AdminSignUpDTO signUpDTO) {
         AdminDTO admin = authService.signUp(signUpDTO);
         return ResponseEntity.ok(admin);
     }
