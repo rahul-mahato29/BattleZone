@@ -7,6 +7,10 @@ spring:
     username: ${DB_username}
     password: ${DB_password}
 
+  jackson:
+    date-format: dd-MM-yyyy HH:mm
+    time-zone: Asia/Kolkata
+
   jpa:
     hibernate:
       ddl-auto: update
