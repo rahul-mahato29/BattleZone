@@ -45,7 +45,7 @@ public class SlotBooking {
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 2)
     private double amount;
 
     @CreationTimestamp
