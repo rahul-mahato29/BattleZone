@@ -1,6 +1,7 @@
 package com.eSports.BattleZone.entities;
 
 import com.eSports.BattleZone.entities.enums.EventType;
+import com.eSports.BattleZone.entities.enums.Game;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class Event {
     private Long id;
 
     @Column(nullable = false)
-    private String gameName;
+    private Game game;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

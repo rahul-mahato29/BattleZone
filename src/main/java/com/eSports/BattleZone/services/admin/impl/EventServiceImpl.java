@@ -102,7 +102,7 @@ public class EventServiceImpl implements EventService {
     public String deleteEventById(Long id) {
         log.info("Deleting the event with id : {}", id);
 
-        Event event = eventRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event not foudn with id : "+ id));
+        Event event = eventRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event not found with id : "+ id));
         if(event != null) {
             eventRepository.deleteById(id);
             return "Event Successfully Deleted!!";
