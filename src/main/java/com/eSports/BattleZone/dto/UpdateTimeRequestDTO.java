@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateTimeRequestDTO {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private LocalDateTime matchTime;
+    private Instant matchTime;
+
+    //todo : use "Instant"
 }
