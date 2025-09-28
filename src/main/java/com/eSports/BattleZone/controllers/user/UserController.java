@@ -5,10 +5,7 @@ import com.eSports.BattleZone.entities.User;
 import com.eSports.BattleZone.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,11 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserById(@PathVariable(name = "userId") Long id) {
         UserDTO user = userService.getUserById(id);
         return ResponseEntity.ok(user);
+    }
+
+    @DeleteMapping(path = "/{userId}")
+    public ResponseEntity<String> deleteUserById(@PathVariable(name = "userId") Long id) {
+        String message = userService.deleteUserById(id);
+        return ResponseEntity.ok(message);
     }
 }

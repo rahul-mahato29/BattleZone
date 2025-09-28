@@ -33,9 +33,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserById(Long id) {
-        log.info("Getting user by id : {}", id);
+        log.info("Getting user with id : {}", id);
 
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id : "+ id));
         return modelMapper.map(user, UserDTO.class);
     }
+
+    @Override
+    public String deleteUserById(Long id) {
+        log.info("Deleting user with id : {}", id);
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id : "+ id));
+        if (user != null) {
+            userRepository.deleteById(id);
+            return "User Removed Successfully!!";
+        } else {
+          return "User not found!!";
+        }
+    }
+
+
 }
